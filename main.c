@@ -1,3 +1,14 @@
+/**
+* @file main.c
+* @brief Testing Program.
+* @author C Team
+* @version 1.0
+* @date Apr 17, 2022
+*
+*
+*/
+
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <SDL/SDL.h>
@@ -31,6 +42,9 @@ int main (void)
     SDL_EnableKeyRepeat(10,10);
 
     initBack(&b);
+    //initBack(b1, mode, 'g');
+    //initBack(b2, mode, 'd');
+    
     initialiserperso(&p);
 	
     while (continuer)
@@ -70,8 +84,11 @@ int main (void)
         if(collisionpp(b.imgbackm,p)==1)
         {
                printf("collision \n");
+        }else{
+        printf("pas collision\n");
         }
         deplacer_perso(&p,event);
+        SDL_Delay(20);
         SDL_Flip(ecran);
     }
     Mix_CloseAudio();

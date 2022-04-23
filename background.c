@@ -1,5 +1,19 @@
+/**
+* @file background.c
+* @brief Testing Program.
+* @author C Team
+* @version 1.0
+* @date Apr 17, 2022
+*/
+
 #include "background.h"
 #include "perso.h"
+
+/**
+* @brief To initialize the background b .
+* @param b the background
+* @return Nothing
+*/ 
 
 void initBack (background *b)
 {
@@ -21,33 +35,50 @@ void initBack (background *b)
     b->num1=0;
 //position de l'animation 1
     b->posanim1.x = 0;
-    b->posanim1.y = 550;
+    b->posanim1.y = 450;
 //position de l'animation 2
     b->posanim2.x = 50;
-    b->posanim2.y = 100;
+    b->posanim2.y = 50;
 //image de l'animation 1
-    b->anim1[0]=IMG_Load("tools/dog0.png");
-    b->anim1[1]=IMG_Load("tools/dog1.png");
-    b->anim1[2]=IMG_Load("tools/dog2.png");
-    b->anim1[3]=IMG_Load("tools/dog3.png");
+    b->anim1[0]=IMG_Load("tools/an0.png");
+    b->anim1[1]=IMG_Load("tools/an1.png");
+    b->anim1[2]=IMG_Load("tools/an2.png");
+    b->anim1[3]=IMG_Load("tools/an3.png");
+    b->anim1[4]=IMG_Load("tools/an4.png");
+    b->anim1[5]=IMG_Load("tools/an5.png");
+    b->anim1[6]=IMG_Load("tools/an6.png");
+    b->anim1[7]=IMG_Load("tools/an7.png");
+    b->anim1[8]=IMG_Load("tools/an8.png");
 //image de l'animation 2
     b->anim2[0]=IMG_Load("tools/ois0.png");
     b->anim2[1]=IMG_Load("tools/ois1.png");
     b->anim2[2]=IMG_Load("tools/ois2.png");
     b->anim2[3]=IMG_Load("tools/ois3.png");
     b->anim2[4]=IMG_Load("tools/ois4.png");
+    b->anim2[5]=IMG_Load("tools/ois5.png");
+    b->anim2[6]=IMG_Load("tools/ois6.png");
+    b->anim2[7]=IMG_Load("tools/ois7.png");
+    b->anim2[8]=IMG_Load("tools/ois8.png");
 //musique
     b->son=Mix_LoadMUS("tools/music.mp3"); //Chargement de la musique
     Mix_PlayMusic(b->son, -1); //Jouer infiniment la musique
 }
-
+/**
+* @brief pour afficher le background b .
+* @param b the background et ecran pour laffichage
+* @return Nothing
+*/ 
 void afficheBack (background b, SDL_Surface *ecran)
 {
 //affichage de background
     SDL_BlitSurface(b.imgbackm,&b.camera,ecran,&b.posbackm);
     //SDL_BlitSurface(b.imgback,&b.camera,ecran,&b.posback);
 }
-
+/**
+* @brief To scroll the camera.
+* @param b the background et direction 
+* @return Nothing
+*/ 
 
 void scrolling (background *b,int direction)
 {
@@ -62,11 +93,11 @@ int speed=6;
         {
             b->camera.x-=speed;
         }
-        else if(direction==2 && b->camera.y + speed > 0)//up
+        else if(direction==2 && b->camera.y + speed < 0)//up
         {
             b->camera.y-=speed;
         }
-        else if(direction==3 && b->camera.y - speed > 0)//down
+        else if(direction==3 && b->camera.y - speed < 0)//down
         {
             b->camera.y+=speed;
         }
@@ -85,6 +116,12 @@ SDL_Color getpixel(SDL_Surface *pSurface,int x,int y)
     SDL_GetRGB(col,pSurface->format, &color.r, &color.g, &color.b);
     return (color);
 }
+
+/**
+* @brief To test collision.
+* @param surface de test et perssonage
+* @return collision
+*/ 
 
 int  collisionpp(SDL_Surface *psurface,personnage p)
 {
@@ -121,11 +158,15 @@ int  collisionpp(SDL_Surface *psurface,personnage p)
     }
     return collision;
 }
-
+/**
+* @brief pour animer le background .
+* @param b the background et ecran daffichage
+* @return Nothing
+*/ 
 void animerbackground (background *b,SDL_Surface *ecran)
 {
     //animation 1
-    if(b->num1 == 3)
+    if(b->num1 == 8)
     {
         b->num1 = 0;
     }
@@ -134,7 +175,7 @@ void animerbackground (background *b,SDL_Surface *ecran)
     b->num1++;
     }
     //animation 2
-    if(b->num2 == 4)
+    if(b->num2 == 8)
     {
         b->num2 = 0;
     }
@@ -147,7 +188,11 @@ void animerbackground (background *b,SDL_Surface *ecran)
     SDL_BlitSurface(b->anim1[b->num1],NULL,ecran,&b->posanim1);
     SDL_BlitSurface(b->anim2[b->num2],NULL,ecran,&b->posanim2);
 }
-
+/**
+* @brief pour liberer la memoire.
+* @param b the background
+* @return Nothing
+*/ 
 void liberer(background b)
 {
 	free(b.imgback);
