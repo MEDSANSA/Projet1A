@@ -1,0 +1,5 @@
+1 turki1_1.png turki1_2.png turki1_3.png
+2 turki2_1.png turki2_2.png turki2_3.png
+3 turki3_1.png turki3_2.png turki3_3.png
+4 turki4_1.png turki4_2.png turki4_3.png
+5 turki5_1.png turki5_2.png turki5_3.png

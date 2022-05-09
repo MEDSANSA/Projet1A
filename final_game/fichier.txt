@@ -1,0 +1,5 @@
+1 turki1.jpg 1
+2 turki2.jpg 3
+3 turki3.jpg 2
+4 turki4.jpg 3
+5 turki5.jpg 1
